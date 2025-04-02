@@ -14,7 +14,7 @@
               <a>
                 <div class="img image-wrapper">
                     <div style="max-width: 700px; display: block;">
-                        <img :src="currentLandscapeImage" alt="My Image" style="max-width: 100%; display: block; position: static;">
+                        <img v-lazy="currentLandscapeImage" alt="My Image" style="max-width: 100%; display: block; position: static;">
                         <div aria-hidden="true" style="opacity: 0;transition: opacity 500ms linear 0s;background-color: rgb(232, 232, 232);position: absolute;inset: 0px;object-fit: cover;"></div>
                     </div>
                 </div>
