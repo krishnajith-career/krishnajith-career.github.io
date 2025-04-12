@@ -223,13 +223,11 @@ h2 {
     position: relative;
     width: 100%;
     border-radius: var(--border-radius);
-    background-color: var(--green);
 }
 
 .about-image .wrapper::before {
     top: 0px;
     left: 0px;
-    background-color: var(--navy);
     mix-blend-mode: screen;
 }
 .about-image .wrapper::before, .about-image .wrapper::after {
@@ -260,13 +258,7 @@ h2 {
 .about-image .wrapper .img {
     position: relative;
     border-radius: var(--border-radius);
-    mix-blend-mode: multiply;
-    filter: grayscale(100%) contrast(1);
-    transition: var(--transition);
     display: inline-block;
-    @media (max-width: 768px) {
-        filter: grayscale(80%) !important;
-    }
 }
 img, svg, .image-wrapper{
     width: 100%;
@@ -725,10 +717,6 @@ button {
 .travel-list-obj .travel-image .img {
     border-radius: var(--border-radius);
     mix-blend-mode: multiply;
-    filter: grayscale(100%) contrast(1) brightness(90%);
-    @media (max-width: 768px) {
-        filter: grayscale(50%);
-    }
 }
 .travel-list-obj .travel-image  img {
     bottom: 0;
@@ -751,13 +739,11 @@ button {
     inset: 0px;
     z-index: 3;
     transition: var(--transition);
-    background-color: var(--navy);
     mix-blend-mode: screen;
 }
 .travel-list-obj .travel-image a {
     width: 100%;
     height: 100%;
-    background-color: var(--green);
     border-radius: var(--border-radius);
     vertical-align: middle;
 }
@@ -779,7 +765,6 @@ button {
     background: transparent;
     outline: 0px;
     mix-blend-mode: normal; 
-    filter: grayscale(0%) contrast(1);
 }
 .footer-social-media {
     display: none;
@@ -805,4 +790,12 @@ button {
 }
 .footer-social-media ul a {
     padding: 20px !important;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }

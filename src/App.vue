@@ -4,18 +4,13 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import landingPage from './components/portfolio/landingPage.vue'
-
-export default {
-  name: 'App',
-  components: {
-    landingPage
-  }
-}
+import { ref, onMounted } from 'vue'
+var theme = ref(localStorage.getItem('theme') || 'dark')
+onMounted(()=>{
+  document.body.classList.toggle('light-theme', theme.value === 'light');
+})
 </script>
 
-<style>
-
-</style>
 <style lang="scss">@import './assets/styles/theme.scss'</style>
