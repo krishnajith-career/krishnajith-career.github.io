@@ -65,9 +65,6 @@
   </template>
   
   <script setup>
-  defineOptions({
-    name: 'socialMedia'
-  })
   </script>
   
   <style lang="scss">

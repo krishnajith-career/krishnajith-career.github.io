@@ -24,9 +24,6 @@
   
   const name = ref('Krishnajith Unnikrishnan')
   
-  defineOptions({
-    name: 'personalDetails'
-  })
   </script>
   
   <style lang="scss">

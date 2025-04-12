@@ -116,9 +116,6 @@
         document.body.classList.toggle('light-theme', theme.value === 'light');
         localStorage.setItem('theme', theme.value);
     }
-  defineOptions({
-    name: 'socialMedia'
-  })
 </script>
 
 <style lang="scss">

@@ -24,10 +24,6 @@ import WorkAndOther from './workAndOther.vue'
 import ContactDetails from './contactDetails.vue'
 import SocialMediaMobile from './socialMediaMobile.vue'
 
-// Register components with kebab-case tag names
-defineOptions({
-  name: 'mainPage'
-})
 </script>
 
 <style lang="scss">
