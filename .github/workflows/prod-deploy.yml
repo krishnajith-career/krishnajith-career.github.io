@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # Only run if commit message contains #prod_release AND the actor is you
+    if: |
+      contains(github.event.head_commit.message, '#prod_release') &&
+      github.actor == 'krishnajith-career'  
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Deploy to GitHub Pages
+        run: npm run deploy
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
