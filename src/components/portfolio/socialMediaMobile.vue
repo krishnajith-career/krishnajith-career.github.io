@@ -124,4 +124,4 @@
 <style lang="scss">
 @import '../../assets/styles/mainPage.scss'; 
 @import '../../assets/styles/variables';
-</style>
+</style> 
