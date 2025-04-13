@@ -11,8 +11,7 @@ jobs:
 
     # Only run if commit message contains #prod_release AND the actor is you
     if: |
-      contains(github.event.head_commit.message, '#prod_release') &&
-      github.actor == 'krishnajith-career'  
+      contains(github.event.head_commit.message, '#prod_release')
 
     steps:
       - name: Checkout code
