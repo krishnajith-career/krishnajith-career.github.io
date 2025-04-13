@@ -9,6 +9,9 @@
     "lint": "vue-cli-service lint",
     "deploy": "npm run build && gh-pages -d dist"
   },
+  "gh-pages": {
+    "repo": "https://x-access-token:${GITHUB_TOKEN}@github.com:krishnajith-career/krishnajith-career.github.io.git"
+  },
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
