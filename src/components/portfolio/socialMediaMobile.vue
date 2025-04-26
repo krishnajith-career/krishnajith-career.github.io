@@ -109,7 +109,7 @@
 
 <script setup>
     import { ref } from 'vue';
-    const theme = ref(localStorage.getItem('theme') || 'dark');
+    const theme = ref(localStorage.getItem('theme') || 'light');
     const changeTheme=()=>{
         theme.value = theme.value === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', theme.value);
