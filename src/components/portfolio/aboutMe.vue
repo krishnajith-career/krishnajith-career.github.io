@@ -5,14 +5,14 @@
         <div class="about-writing">
           <div>
             <p>
-              Results-driven Vue.js Developer and Level 2 Software Developer specializing in building high-performance web applications.
+              Results-driven Senior Software Developer with 6 years of experience designing, developing, and optimizing scalable enterprise web applications.
             </p>
             <p>
-              Proficient in Vue.js, PHP, MySQL, and RESTful API development, with expertise in scalable architectures, CI/CD pipelines, and agile development.
+              Proficient in Vue.js, React.js, Node.js, PHP, MySQL, and RESTful API development, with expertise in frontend architecture, authentication systems, performance optimization, scalable application design, and CI/CD implementation.
             </p>
             <p>
-              Skilled in team leadership, software optimization, cross-functional collaboration, and troubleshooting complex systems to ensure seamless functionality and efficiency.
-              Passionate about innovation, automation, continuous learning, and delivering secure, efficient, and user-friendly software solutions that drive business success.
+              Skilled in Agile development, team leadership, mentoring junior developers, cross-functional collaboration, problem-solving, and troubleshooting complex systems to deliver secure, efficient, and high-quality software solutions.
+              Passionate about innovation, continuous learning, automation, and building user-centric applications that enhance business performance and drive organizational success.
             </p>
             <p>Here are a few technologies I’ve been working with recently:</p>
           </div>
@@ -43,11 +43,23 @@
   import { ref, onMounted } from 'vue';
   
   const skills = [
-    'Vue.js', 'Vuex', 'JavaScript', 'HTML', 'CSS', 'Bootstrap', 'JQuery',
-    'MySQL', 'PHP', 'RESTful APIs', 'AWS', 'Apache',
-    'Git', 'GitHub', 'Redmine', 'Postman',
-    'Code reviews', 'Unit Testing', 'CI/CD (Jenkins, GitHub Actions)',
-    'Agile & Scrum methodologies', 'Debugging tools (Xdebug)'
+    'Vue.js', 'Vuex', 'Pinia', 
+    'React.js', 'JavaScript (ES6+)', 'TypeScript',
+    'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'jQuery',
+    'PHP', 'Node.js', 'MySQL',
+    'RESTful APIs', 'JWT Authentication', 'OIDC',
+    'AWS', 'Apache',
+    'Git', 'GitHub', 'GitHub Actions', 'Jenkins',
+    'Postman', 'Redmine',
+    'Unit Testing', 'Code Reviews',
+    'CI/CD Pipelines',
+    'Agile & Scrum Methodologies',
+    'Performance Optimization',
+    'System Design & Architecture',
+    'Debugging & Troubleshooting',
+    'Xdebug',
+    'Cross-functional Collaboration',
+    'Technical Mentoring'
   ];
   
   const images = [

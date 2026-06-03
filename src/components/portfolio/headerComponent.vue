@@ -64,7 +64,7 @@
     }
   };
 
-  const theme = ref(localStorage.getItem('theme') || 'light');
+  const theme = ref(localStorage.getItem('theme') || 'dark');
 
   const changeTheme=()=>{
     theme.value = theme.value === 'light' ? 'dark' : 'light';

@@ -54,6 +54,20 @@ const activeTab = ref(0)
 
 const experiences = ref([
   {
+    buttonName: 'Senior Software Dev',
+    position: 'Senior Software Developer',
+    company: 'Prodapt Solutions Pvt. Ltd',
+    range: 'May 2025 - May 2026',
+    responsibilities: [
+      'Contributed to enterprise application development across Vue.js, React.js, Node.js, and backend services.',
+      'Implemented seamless authentication and login integration across multiple applications, improving user experience and enabling secure cross-application access',
+      'Developed AI-driven features to improve automation, application efficiency, and user experience.',
+      'Optimized large-scale Vue.js and React.js applications through component refactoring, performance tuning,lazy loading, state management improvements, and bundle optimization, significantly improving application responsiveness and load times.',
+      'Led Node.js upgrade initiatives across multiple applications, ensuring compatibility, dependency migration,security improvements, and smooth production deployments, while designing and developing scalable RESTfulAPIs for frontend and backend integrations across enterprise systems.',
+      'Led Agile activities including Sprint Planning, Sprint Reviews, CAB discussions, release coordination, technical and Confluence documentation, while collaborating with QA, DevOps, Product Owners, and Architects to deliver scalable solutions. Reviewed and mentored Software Engineers (SE) and Associate Software Engineers(ASE), ensuring adherence to coding standards, performance optimization, maintainability, best practices, and continuous improvement in code quality and team productivity.'
+    ],
+  },
+  {
     buttonName: 'L2 Software Dev',
     position: 'Level-2 Software Developer',
     company: 'Linways',
