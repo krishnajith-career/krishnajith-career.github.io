@@ -144,17 +144,39 @@ const experiences = [
   }
 ]
 
+/* =========================================================
+   MOBILE EXPERIENCE CAROUSEL
+========================================================= */
+
+const mobileExperienceIndex = ref(0)
+
+const nextExperience = () => {
+  mobileExperienceIndex.value =
+    (mobileExperienceIndex.value + 1) % experiences.length
+}
+
+const previousExperience = () => {
+  mobileExperienceIndex.value =
+    (mobileExperienceIndex.value - 1 + experiences.length) %
+    experiences.length
+}
+
+const goToExperience = (index) => {
+  mobileExperienceIndex.value = index
+}
+
+/* =========================================================
+   EXPERIENCE MODAL
+========================================================= */
 
 const openExperience = (experience) => {
   selectedExperience.value = experience
 }
 
-
 const closeExperience = () => {
   selectedExperience.value = null
 }
 </script>
-
 
 <template>
 
@@ -191,6 +213,7 @@ const closeExperience = () => {
 
         <button
           class="outline-btn"
+          type="button"
           @click="emit('goTo', 4)"
         >
           VIEW FULL EXPERIENCE
@@ -201,23 +224,26 @@ const closeExperience = () => {
 
 
       <!-- =========================================
-           TIMELINE
+           EXPERIENCE TIMELINE
       ========================================== -->
 
       <div class="experience-timeline">
 
         <div class="experience-timeline-line"></div>
 
-
         <article
-          v-for="item in experiences"
+          v-for="(item, index) in experiences"
           :key="item.id"
           class="experience-item"
+          :class="{
+            'mobile-active': index === mobileExperienceIndex
+          }"
         >
 
           <!-- Timeline node -->
           <button
             class="experience-node"
+            type="button"
             @click="openExperience(item)"
             :aria-label="`View ${item.role}`"
           >
@@ -228,6 +254,7 @@ const closeExperience = () => {
           <!-- Experience card -->
           <button
             class="experience-card"
+            type="button"
             @click="openExperience(item)"
           >
 
@@ -236,7 +263,6 @@ const closeExperience = () => {
               <div class="experience-company-icon">
                 {{ item.icon }}
               </div>
-
 
               <div class="experience-info">
 
@@ -269,7 +295,6 @@ const closeExperience = () => {
 
               </div>
 
-
               <span class="experience-arrow">
                 ↗
               </span>
@@ -283,7 +308,54 @@ const closeExperience = () => {
       </div>
 
 
-      <!-- Counter -->
+      <!-- =========================================
+           MOBILE EXPERIENCE CONTROLS
+      ========================================== -->
+
+      <div class="experience-mobile-controls">
+
+        <button
+          class="experience-mobile-arrow"
+          type="button"
+          aria-label="Previous experience"
+          @click="previousExperience"
+        >
+          ←
+        </button>
+
+
+        <div class="experience-mobile-dots">
+
+          <button
+            v-for="(item, index) in experiences"
+            :key="item.id"
+            type="button"
+            class="experience-mobile-dot"
+            :class="{
+              active: index === mobileExperienceIndex
+            }"
+            :aria-label="`Show ${item.role}`"
+            @click="goToExperience(index)"
+          ></button>
+
+        </div>
+
+
+        <button
+          class="experience-mobile-arrow"
+          type="button"
+          aria-label="Next experience"
+          @click="nextExperience"
+        >
+          →
+        </button>
+
+      </div>
+
+
+      <!-- =========================================
+           COUNTER
+      ========================================== -->
 
       <div class="counter">
         {{ props.progress }}
@@ -316,14 +388,11 @@ const closeExperience = () => {
 .experience-layout {
   display: flex;
   align-items: center;
-
   gap: 6%;
 }
 
-
 .experience-intro {
   width: 32%;
-
   flex-shrink: 0;
 }
 
@@ -342,7 +411,6 @@ const closeExperience = () => {
 
   padding-left: 34px;
 }
-
 
 .experience-timeline-line {
   position: absolute;
@@ -403,7 +471,6 @@ const closeExperience = () => {
     box-shadow 0.3s ease;
 }
 
-
 .experience-node span {
   width: 7px;
   height: 7px;
@@ -412,7 +479,6 @@ const closeExperience = () => {
 
   background: rgba(255, 255, 255, 0.75);
 }
-
 
 .experience-node:hover {
   border-color: #fff;
@@ -454,7 +520,6 @@ const closeExperience = () => {
     border-color 0.3s ease,
     transform 0.3s ease;
 }
-
 
 .experience-card:hover {
   background: rgba(0, 0, 0, 0.84);
@@ -514,7 +579,6 @@ const closeExperience = () => {
   min-width: 0;
 }
 
-
 .experience-info h3 {
   margin: 0 0 7px;
 
@@ -527,7 +591,6 @@ const closeExperience = () => {
   font-weight: 600;
 }
 
-
 .experience-info p {
   margin: 0;
 
@@ -537,7 +600,6 @@ const closeExperience = () => {
 
   line-height: 1.4;
 }
-
 
 .company-separator {
   margin: 0 5px;
@@ -561,7 +623,6 @@ const closeExperience = () => {
 
   gap: 22px;
 }
-
 
 .experience-date {
   display: flex;
@@ -590,7 +651,6 @@ const closeExperience = () => {
   border: 1px solid rgba(255, 255, 255, 0.78);
 }
 
-
 .calendar-icon::before {
   content: "";
 
@@ -605,7 +665,6 @@ const closeExperience = () => {
 
   background: rgba(255, 255, 255, 0.78);
 }
-
 
 .calendar-icon::after {
   content: "";
@@ -625,7 +684,7 @@ const closeExperience = () => {
 
 
 /* =========================================================
-   ARROW
+   CARD ARROW
 ========================================================= */
 
 .experience-arrow {
@@ -650,13 +709,97 @@ const closeExperience = () => {
     transform 0.3s ease;
 }
 
-
 .experience-card:hover .experience-arrow {
   background: #fff;
 
   color: #000;
 
   border-color: #fff;
+}
+
+
+/* =========================================================
+   MOBILE CONTROLS
+========================================================= */
+
+.experience-mobile-controls {
+  display: none;
+}
+
+.experience-mobile-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+}
+
+.experience-mobile-dot {
+  width: 6px;
+  height: 6px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.28);
+
+  cursor: pointer;
+
+  transition:
+    width 0.25s ease,
+    background 0.25s ease;
+}
+
+.experience-mobile-dot.active {
+  width: 22px;
+
+  border-radius: 10px;
+
+  background: #fff;
+}
+
+
+/* =========================================================
+   MOBILE ARROWS
+========================================================= */
+
+.experience-mobile-arrow {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  color: #fff;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.experience-mobile-arrow:hover {
+  background: #fff;
+
+  color: #000;
+
+  transform: scale(1.05);
 }
 
 
@@ -718,6 +861,10 @@ const closeExperience = () => {
   }
 
 
+  /* =========================================
+     INTRO
+  ========================================= */
+
   .experience-intro {
     width: auto;
 
@@ -725,45 +872,62 @@ const closeExperience = () => {
   }
 
 
+  /* =========================================
+     TIMELINE
+  ========================================= */
+
   .experience-timeline {
     width: calc(100% - 12px);
 
-    margin: 35px 0 0 12px;
+    margin: 30px 0 0 0px;
 
-    padding-left: 20px;
+    padding-left: 0;
   }
 
+
+  /* Hide vertical timeline on mobile */
 
   .experience-timeline-line {
-    left: 0;
-
-    top: 18px;
-    bottom: 18px;
+    display: none;
   }
 
+
+  /* =========================================
+     EXPERIENCE ITEMS
+  ========================================= */
+
+  .experience-item {
+    display: none;
+
+    margin-bottom: 0;
+  }
+
+
+  /* Show only selected experience */
+
+  .experience-item.mobile-active {
+    display: block;
+  }
+
+
+  /* Hide timeline node */
 
   .experience-node {
-    left: -13px;
-
-    top: 26px;
-
-    width: 25px;
-    height: 25px;
+    display: none;
   }
 
 
-  .experience-node span {
-    width: 6px;
-    height: 6px;
-  }
-
+  /* =========================================
+     EXPERIENCE CARD
+  ========================================= */
 
   .experience-card {
-    min-height: 90px;
+    width: 100%;
+
+    min-height: 145px;
 
     padding: 18px 16px;
   }
-
 
   .experience-card-main {
     gap: 12px;
@@ -771,6 +935,10 @@ const closeExperience = () => {
     padding-right: 0;
   }
 
+
+  /* =========================================
+     COMPANY ICON
+  ========================================= */
 
   .experience-company-icon {
     width: 42px;
@@ -780,6 +948,10 @@ const closeExperience = () => {
   }
 
 
+  /* =========================================
+     EXPERIENCE INFO
+  ========================================= */
+
   .experience-info h3 {
     font-size: 12px;
 
@@ -788,11 +960,14 @@ const closeExperience = () => {
     margin-bottom: 5px;
   }
 
-
   .experience-info p {
     font-size: 8px;
   }
 
+
+  /* =========================================
+     ACTIONS
+  ========================================= */
 
   .experience-actions {
     position: static;
@@ -808,11 +983,9 @@ const closeExperience = () => {
     gap: 10px;
   }
 
-
   .experience-date {
     font-size: 8px;
   }
-
 
   .experience-arrow {
     width: 31px;
@@ -822,9 +995,101 @@ const closeExperience = () => {
   }
 
 
+  /* =========================================
+     MOBILE PAGINATION
+  ========================================= */
+
+  .experience-mobile-controls {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    margin-top: 16px;
+  }
+
+
+  .experience-mobile-dots {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+  }
+
+
+  .experience-mobile-dot {
+    width: 6px;
+    height: 6px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+
+  .experience-mobile-dot.active {
+    width: 22px;
+
+    border-radius: 10px;
+
+    background: #fff;
+  }
+
+
+  /* =========================================
+     MOBILE NAVIGATION ARROWS
+  ========================================= */
+
+  .experience-mobile-arrow {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    color: #fff;
+
+    font-size: 14px;
+  }
+
+
+  .experience-mobile-arrow:active {
+    background: #fff;
+
+    color: #000;
+
+    transform: scale(0.95);
+  }
+
+
+  /* =========================================
+     COUNTER
+  ========================================= */
+
   .experience .counter {
     left: 28px;
   }
-}
 
+}
 </style>
